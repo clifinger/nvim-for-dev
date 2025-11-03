@@ -1,6 +1,12 @@
 ---@diagnostic disable: different-requires
 return {
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    event = "VeryLazy",
+  },
+  {
     "folke/noice.nvim",
     event = require("configs.noice").event,
     opts = require("configs.noice").opts,

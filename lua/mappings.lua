@@ -10,19 +10,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr><ESC>", { desc = "File: Save File" })
-vim.keymap.set("n", "<C-q>", function()
-  local win_count = #vim.api.nvim_tabpage_list_wins(0)
-  if win_count > 1 then
-    vim.cmd "close"
-    return
-  end
-  local listed_buffers = vim.fn.getbufinfo { buflisted = 1 }
-  if #listed_buffers > 1 then
-    vim.cmd "bdelete"
-  else
-    vim.cmd "q"
-  end
-end, { desc = "File: Super closer" })
+map("n", "<C-q>", "<cmd>q<CR>", { desc = "File: Quit Current Window" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Navigate: Scroll Down Half Page (Center)" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Navigate: Scroll Up Half Page (Center)" })
 map("n", "n", "nzzzv", { desc = "Navigate: Next Search Result (Center)" })
