@@ -49,3 +49,10 @@ vim.api.nvim_create_autocmd({ "ModeChanged", "InsertEnter", "InsertLeave" }, {
 })
 
 update_cursorline_color()
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.templ",
+  callback = function()
+    vim.bo.filetype = "templ"
+  end,
+})

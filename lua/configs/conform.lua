@@ -9,6 +9,10 @@ local options = {
         end
       end,
     },
+    ["templ"] = {
+      command = "templ",
+      args = { "fmt" },
+    },
     ["biome"] = {
       command = "biome",
       args = {
@@ -38,12 +42,12 @@ local options = {
     ["json"] = { "biome-check" },
     ["css"] = { "biome-check" },
     markdown = { "markdownlint-cli2", "markdown-toc" },
-    yaml = { "yamlfix" },
     sh = { "shfmt" },
     bash = { "shfmt" },
-    go = { "gofumpt" },
+    go = { "golangci-lint", "gofumpt" },
     html = { "biome" },
     zig = { "zigfmt" },
+    templ = { "templ" },
     ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
   },
 

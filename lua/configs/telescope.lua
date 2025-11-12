@@ -1,5 +1,6 @@
 local config = require("nvchad.configs.telescope").defaults
 
+
 return {
   defaults = config,
   extensions = {

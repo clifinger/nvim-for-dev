@@ -19,5 +19,6 @@ local servers = {
   "tailwindcss",
   "biome",
   "sourcekit",
+  "templ",
 }
 vim.lsp.enable(servers)

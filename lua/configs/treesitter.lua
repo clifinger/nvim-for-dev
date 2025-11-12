@@ -22,5 +22,6 @@ return {
     "toml",
     "rust",
     "zig",
+    "templ",
   },
 }
