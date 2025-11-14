@@ -27,6 +27,10 @@ This configuration is based on NvChad. Before proceeding, ensure you have the ne
   - Windows users must have `GnuWin32` installed and set on path.
 - **`mise` or `asdf`**: For managing tool versions (optional, but recommended).
   - Follow the official instructions at the [mise website](https://mise.jdx.dev/getting-started.html) or the [asdf website](https://asdf-vm.com/guide/getting-started.html) to install it.
+- **`delve`** (for Go debugging): Required for debugging Go applications.
+  - **Installation**: `go install github.com/go-delve/delve/cmd/dlv@latest`
+  - Make sure `$GOPATH/bin` is in your PATH.
+  - See the [Delve installation guide](https://github.com/go-delve/delve/tree/master/Documentation/installation) for more details.
 
 Before installation, make sure to delete your old Neovim folders:
 
@@ -81,6 +85,10 @@ The following plugins have been added to enhance the core functionality:
 | **[indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)** | Adds indentation guides. |
 | **[render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)** | Renders markdown in a buffer. |
 | **[mini.ai](https://github.com/echasnovski/mini.ai)** | Extends text objects and motions for nodes in the syntax tree, enhancing code manipulation. |
+| **[nvim-dap](https://github.com/mfussenegger/nvim-dap)** | Debug Adapter Protocol client for debugging applications in Neovim. |
+| **[nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)** | A UI for nvim-dap which provides a nice debugging experience. |
+| **[nvim-dap-go](https://github.com/leoluz/nvim-dap-go)** | Extension for nvim-dap providing configurations for launching Go debugger (Delve). |
+| **[nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)** | Adds virtual text support to nvim-dap for showing variable values inline. |
 
 ---
 
@@ -137,6 +145,27 @@ In addition to NvChad's defaults, the following shortcuts have been added to fac
 | `<leader>snd` | Dismiss all messages (Noice). |
 | `<leader>ut` | Toggle Treesitter Context. |
 | `<leader>ug` | Toggle Indentation Guides. |
+
+### Debugging (Go with Delve)
+
+| Shortcut | Action |
+| :--- | :--- |
+| `<leader>db` | Toggle breakpoint at current line. |
+| `<leader>dB` | Set a conditional breakpoint. |
+| `<leader>dc` | Continue execution / Start debugging. |
+| `<leader>dC` | Run to cursor position. |
+| `<leader>di` | Step into function. |
+| `<leader>do` | Step over function. |
+| `<leader>dO` | Step out of current function. |
+| `<leader>dj` | Move down in the call stack. |
+| `<leader>dk` | Move up in the call stack. |
+| `<leader>dr` | Toggle REPL (Read-Eval-Print Loop). |
+| `<leader>dt` | Terminate debugging session. |
+| `<leader>dp` | Pause execution. |
+| `<leader>du` | Toggle DAP UI (debugging interface). |
+| `<leader>de` | Evaluate expression under cursor or selection. |
+| `<leader>dgt` | Debug the Go test under cursor. |
+| `<leader>dgl` | Debug the last Go test. |
 
 ---
 
