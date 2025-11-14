@@ -66,6 +66,14 @@ return {
     end,
   },
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "goimports",
+      },
+    },
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     lazy = require("configs.render-markdown").lazy,
     cmd = require("configs.render-markdown").cmd,
