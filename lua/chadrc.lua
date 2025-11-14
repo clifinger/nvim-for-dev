@@ -18,14 +18,4 @@ M.ui = {
   -- lsp = { signature = { disabled = true } },
 }
 
-M.plugins = {
-  override = {
-    ["williamboman/mason.nvim"] = {
-      opts = function(_, opts)
-        vim.list_extend(opts.ensure_installed, { "goimports" })
-      end,
-    },
-  },
-}
-
 return M
