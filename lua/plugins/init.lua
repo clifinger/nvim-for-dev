@@ -116,4 +116,18 @@ return {
       return require "configs.mini"
     end,
   },
+  -- DAP (Debug Adapter Protocol)
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "leoluz/nvim-dap-go",
+      "nvim-neotest/nvim-nio",
+    },
+    keys = require("configs.dap").keys,
+    config = function()
+      require("configs.dap").opts()
+    end,
+  },
 }
