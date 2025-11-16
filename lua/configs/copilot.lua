@@ -7,7 +7,7 @@ local user = vim.env.USER or "User"
 user = user:sub(1, 1):upper() .. user:sub(2)
 
 M.opts = {
-  auto_insert_mode = true,
+  auto_insert_mode = false,
   auto_select = true,
   question_header = "  " .. user .. " ",
   answer_header = "  Copilot ",
@@ -15,7 +15,7 @@ M.opts = {
     width = 0.4,
   },
   selection = function(source)
-    local select = require("CopilotChat.select")
+    local select = require "CopilotChat.select"
     return select.visual(source) or select.buffer(source)
   end,
 }
@@ -81,46 +81,13 @@ M.keys = {
   {
     "<leader>ap",
     function()
-      local chat = require("CopilotChat")
-      local select = require("CopilotChat.select")
-      
-      -- Capture visual selection directly if in visual mode
+      local chat = require "CopilotChat"
+      -- Exit visual mode if in it, this sets the '< and '> marks
       local mode = vim.fn.mode()
-      if mode:match('[vV]') then
-        -- Get visual selection start and end positions
-        local start_line = vim.fn.line('v')
-        local end_line = vim.fn.line('.')
-        local bufnr = vim.api.nvim_get_current_buf()
-        
-        -- Ensure correct order
-        if start_line > end_line then
-          start_line, end_line = end_line, start_line
-        end
-        
-        -- Exit visual mode
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
-        
-        -- Get the lines content
-        local lines = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, end_line, false)
-        local content = table.concat(lines, '\n')
-        
-        if vim.trim(content) ~= '' then
-          -- Create a selection object
-          local selection = {
-            content = content,
-            start_line = start_line,
-            end_line = end_line,
-            bufnr = bufnr,
-          }
-          
-          chat.select_prompt({
-            selection = function() return selection end,
-          })
-          return
-        end
+      if mode:match "[vV\022]" then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
       end
-      
-      -- No selection or empty, use default behavior
+      -- Call select_prompt which will use the marks
       chat.select_prompt()
     end,
     desc = "Prompt Actions (CopilotChat)",
@@ -132,6 +99,7 @@ M.config = function(_, opts)
   require("render-markdown").setup {
     file_types = { "markdown", "copilot-chat" },
   }
+  
   vim.g.copilot_no_tab_map = true
   local chat = require "CopilotChat"
 

@@ -56,3 +56,19 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.bo.filetype = "templ"
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "haskell",
+  callback = function()
+    local cmp = require "cmp"
+    cmp.setup.buffer {
+      enabled = function()
+        local context = require "cmp.config.context"
+        if vim.bo.buftype == "prompt" then
+          return false
+        end
+        return not context.in_treesitter_capture "comment" and not context.in_syntax_group "Comment"
+      end,
+    }
+  end,
+})

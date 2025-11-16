@@ -23,5 +23,6 @@ return {
     "rust",
     "zig",
     "templ",
+    "haskell",
   },
 }

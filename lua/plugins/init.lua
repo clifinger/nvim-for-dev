@@ -1,6 +1,12 @@
 ---@diagnostic disable: different-requires
 return {
   {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      return require "configs.cmp"
+    end,
+  },
+  {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
@@ -129,5 +135,15 @@ return {
     config = function()
       require("configs.dap").opts()
     end,
+  },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^4",
+    lazy = false,
+    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
   },
 }

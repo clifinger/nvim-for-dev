@@ -48,6 +48,7 @@ local options = {
     html = { "biome" },
     zig = { "zigfmt" },
     templ = { "templ" },
+    haskell = { "fourmolu" },
     ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
   },
 

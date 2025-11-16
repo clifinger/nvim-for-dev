@@ -5,7 +5,7 @@ require "nvchad.mappings"
 --
 local map = vim.keymap.set
 local del = vim.keymap.del
-map("n", ";", ":", { desc = "CMD enter command mode" })
+
 
 map("i", "jk", "<ESC>")
 
@@ -32,4 +32,21 @@ map(
   ":lua require('base46').toggle_transparency()<CR>",
   { noremap = true, silent = true, desc = "Toggle Background Transparency" }
 )
+
+-- Telescope: Include hidden and ignored files
+map("n", "<leader>fh", function()
+  require("telescope.builtin").find_files({
+    hidden = true,
+    no_ignore = true,
+  })
+end, { desc = "Telescope: Find Files (Hidden + Ignored)" })
+
+-- Haskell: Run code lens (evaluate)
+map({ "n", "i", "v" }, "<A-e>", function()
+  if vim.fn.mode() == "i" then
+    vim.cmd "stopinsert"
+  end
+  local ht = require('haskell-tools')
+  ht.lsp.buf_eval_all()
+end, { desc = "Haskell: Evaluate All" })
 
