@@ -60,6 +60,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "haskell",
   callback = function()
+    vim.opt_local.comments:prepend ":-- >>>"
     local cmp = require "cmp"
     cmp.setup.buffer {
       enabled = function()
