@@ -16,21 +16,35 @@ local image_previewer = function(filepath, bufnr, opts)
   end
 
   if is_image(filepath) then
-    local term = vim.api.nvim_open_term(bufnr, {})
-    local function send_output(_, data, _)
-      for _, d in ipairs(data) do
-        vim.api.nvim_chan_send(term, d .. "\r\n")
+    -- Try to find chafa in PATH, fallback to common locations
+    local chafa_cmd = vim.fn.exepath("chafa")
+    if chafa_cmd == "" then
+      -- Fallback: try to find in nix store
+      local handle = io.popen("ls /nix/store/*-chafa-*/bin/chafa 2>/dev/null | head -1")
+      if handle then
+        chafa_cmd = handle:read("*a"):gsub("%s+", "")
+        handle:close()
       end
     end
-    Job:new({
-      command = "chafa",
-      args = { filepath },
-      on_stdout = send_output,
-      on_stderr = send_output,
-    }):sync()
-  else
-    previewers.buffer_previewer_maker(filepath, bufnr, opts)
+    
+    if chafa_cmd ~= "" then
+      local term = vim.api.nvim_open_term(bufnr, {})
+      local function send_output(_, data, _)
+        for _, d in ipairs(data) do
+          vim.api.nvim_chan_send(term, d .. "\r\n")
+        end
+      end
+      Job:new({
+        command = chafa_cmd,
+        args = { filepath },
+        on_stdout = send_output,
+        on_stderr = send_output,
+      }):sync()
+      return
+    end
   end
+  
+  previewers.buffer_previewer_maker(filepath, bufnr, opts)
 end
 
 config.buffer_previewer_maker = image_previewer
