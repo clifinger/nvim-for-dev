@@ -20,5 +20,6 @@ local servers = {
   "biome",
   "sourcekit",
   "templ",
+  "gleam",
 }
 vim.lsp.enable(servers)

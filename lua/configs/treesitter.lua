@@ -24,5 +24,6 @@ return {
     "zig",
     "templ",
     "haskell",
+    "gleam",
   },
 }
