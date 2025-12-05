@@ -47,18 +47,6 @@ return {
           max_line_length = 500,
         },
       },
-      preview = function(item, opts)
-        -- Skip preview for image files
-        if item.file then
-          local ext = vim.fn.fnamemodify(item.file, ":e"):lower()
-          local image_extensions = { "png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico" }
-          if vim.tbl_contains(image_extensions, ext) then
-            return false
-          end
-        end
-        -- Use default file preview for other files
-        return require("snacks.picker.preview").file(item, opts)
-      end,
       formatters = {
         file = {
           filename_first = false,
