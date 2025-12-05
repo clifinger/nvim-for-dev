@@ -344,7 +344,12 @@ return {
     {
       "<leader>gl",
       function()
-        Snacks.picker.git_log_line()
+        local file = vim.fn.expand("%:p")
+        if file ~= "" and vim.fn.filereadable(file) == 1 then
+          Snacks.picker.git_log_line()
+        else
+          vim.notify("Not in a file buffer", vim.log.levels.WARN)
+        end
       end,
       desc = "Git Log (Current Line)",
     },
