@@ -267,11 +267,25 @@ return {
       desc = "Git Branches",
     },
     {
+      "<leader>gB",
+      function()
+        Snacks.picker.git_branches({ all = true })
+      end,
+      desc = "Git Branches (All + Remote)",
+    },
+    {
       "<leader>gc",
       function()
         Snacks.picker.git_log()
       end,
-      desc = "Git Commits",
+      desc = "Git Commits (Log)",
+    },
+    {
+      "<leader>gC",
+      function()
+        Snacks.picker.git_log_file()
+      end,
+      desc = "Git Commits (Current File)",
     },
     {
       "<leader>gs",
@@ -279,6 +293,85 @@ return {
         Snacks.picker.git_status()
       end,
       desc = "Git Status",
+    },
+    {
+      "<leader>gS",
+      function()
+        Snacks.picker.git_stash()
+      end,
+      desc = "Git Stash",
+    },
+    {
+      "<leader>gd",
+      function()
+        Snacks.picker.git_diff()
+      end,
+      desc = "Git Diff (Hunks)",
+    },
+    {
+      "<leader>gD",
+      function()
+        Snacks.picker.git_diff({ staged = true })
+      end,
+      desc = "Git Diff (Staged)",
+    },
+    {
+      "<leader>gf",
+      function()
+        Snacks.picker.git_files()
+      end,
+      desc = "Git Files (Tracked)",
+    },
+    {
+      "<leader>gF",
+      function()
+        Snacks.picker.git_files({ untracked = true })
+      end,
+      desc = "Git Files (All + Untracked)",
+    },
+    {
+      "<leader>gG",
+      function()
+        Snacks.picker.git_grep()
+      end,
+      desc = "Git Grep",
+    },
+    {
+      "<leader>gl",
+      function()
+        Snacks.picker.git_log_line()
+      end,
+      desc = "Git Log (Current Line)",
+    },
+
+    -- GitHub (requires gh CLI)
+    {
+      "<leader>ghi",
+      function()
+        Snacks.picker.gh_issue()
+      end,
+      desc = "GitHub Issues (open)",
+    },
+    {
+      "<leader>ghI",
+      function()
+        Snacks.picker.gh_issue({ state = "all" })
+      end,
+      desc = "GitHub Issues (all)",
+    },
+    {
+      "<leader>ghp",
+      function()
+        Snacks.picker.gh_pr()
+      end,
+      desc = "GitHub Pull Requests (open)",
+    },
+    {
+      "<leader>ghP",
+      function()
+        Snacks.picker.gh_pr({ state = "all" })
+      end,
+      desc = "GitHub Pull Requests (all)",
     },
 
     -- LSP
