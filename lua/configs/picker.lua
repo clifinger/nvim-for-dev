@@ -43,8 +43,8 @@ return {
       },
       previewers = {
         file = {
-          max_size = 1024 * 1024, -- 1MB
-          max_line_length = 500,
+          max_size = 10 * 1024 * 1024, -- 10MB
+          max_line_length = 1000,
         },
       },
       formatters = {
@@ -216,6 +216,7 @@ return {
     {
       "<leader>ff",
       function()
+        vim.notify("DEBUG: enabled=" .. tostring(Snacks.image.config.enabled) .. " force=" .. tostring(Snacks.image.config.force))
         Snacks.picker.files()
       end,
       desc = "Find Files",

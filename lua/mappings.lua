@@ -6,6 +6,13 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local del = vim.keymap.del
 
+-- Remove ALL NvChad Telescope mappings to use Snacks Picker instead
+pcall(del, "n", "<leader>ff")
+pcall(del, "n", "<leader>fb")
+pcall(del, "n", "<leader>fh")
+pcall(del, "n", "<leader>fo")
+pcall(del, "n", "<leader>fw")
+pcall(del, "n", "<leader>fz")
 
 map("i", "jk", "<ESC>")
 
@@ -32,13 +39,38 @@ map(
   { noremap = true, silent = true, desc = "Toggle Background Transparency" }
 )
 
--- Snacks Picker: Include hidden and ignored files (replaces Telescope mapping)
+-- Snacks Picker: Override NvChad mappings
+map("n", "<leader>ff", function()
+  Snacks.picker.files()
+end, { desc = "Find Files" })
+
+map("n", "<leader>fa", function()
+  Snacks.picker.files({ hidden = true, ignored = true })
+end, { desc = "Find All Files (Hidden + Ignored)" })
+
+map("n", "<leader>fb", function()
+  Snacks.picker.buffers()
+end, { desc = "Find Buffers" })
+
 map("n", "<leader>fh", function()
-  Snacks.picker.files({
-    hidden = true,
-    ignored = true,
-  })
-end, { desc = "Snacks Picker: Find Files (Hidden + Ignored)" })
+  Snacks.picker.help()
+end, { desc = "Find Help Pages" })
+
+map("n", "<leader>fo", function()
+  Snacks.picker.recent()
+end, { desc = "Find Recent Files" })
+
+map("n", "<leader>fw", function()
+  Snacks.picker.grep()
+end, { desc = "Find Word (Live Grep)" })
+
+map("x", "<leader>fw", function()
+  Snacks.picker.grep_word()
+end, { desc = "Find Selection in Files" })
+
+map("n", "<leader>fz", function()
+  Snacks.picker.lines()
+end, { desc = "Find in Current Buffer" })
 
 -- Haskell: Run code lens (evaluate)
 map({ "n", "i", "v" }, "<A-e>", function()

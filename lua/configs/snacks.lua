@@ -1,7 +1,10 @@
 local picker_config = require("configs.picker")
 
 return {
-  image = { enabled = true },
+  image = {
+    enabled = true,
+    force = true,
+  },
   keys = vim.list_extend({
     {
       "<leader>gg",

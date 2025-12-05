@@ -33,4 +33,10 @@ require "autocmds"
 
 vim.schedule(function()
   require "mappings"
+  -- Patch preview pour forcer images
+  vim.defer_fn(function()
+    if Snacks then
+      require "configs.preview-patch"
+    end
+  end, 100)
 end)
