@@ -283,7 +283,12 @@ return {
     {
       "<leader>gC",
       function()
-        Snacks.picker.git_log_file()
+        local file = vim.fn.expand("%:p")
+        if file ~= "" and vim.fn.filereadable(file) == 1 then
+          Snacks.picker.git_log_file()
+        else
+          vim.notify("Not in a file buffer", vim.log.levels.WARN)
+        end
       end,
       desc = "Git Commits (Current File)",
     },
