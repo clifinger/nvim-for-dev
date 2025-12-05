@@ -23,7 +23,6 @@ map("v", "p", '"_dP', { desc = "Edit: Paste Without Losing Yank (Visual Mode)" }
 map("n", "<leader>v", "<C-w>v", { desc = "Window: Split Vertically" })
 map("n", "<leader>h", "<C-w>s", { desc = "Window: Split Horizontally" })
 map("n", "<leader>se", "<C-w>=", { desc = "Window: Equalize Splits" })
-del("n", "<leader>ff") -- remove default mapping
 
 -- set toggle_transparency
 map(
