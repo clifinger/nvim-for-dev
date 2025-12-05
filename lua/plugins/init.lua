@@ -19,10 +19,11 @@ return {
     keys = require("configs.noice").keys,
     config = require("configs.noice").config,
   },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    opts = {},
-  },
+  -- Telescope (replaced by Snacks Picker)
+  -- {
+  --   "nvim-telescope/telescope-ui-select.nvim",
+  --   opts = {},
+  -- },
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -46,8 +47,10 @@ return {
     lazy = false,
     keys = require("configs.snacks").keys,
     opts = function()
+      local picker_config = require("configs.picker")
       return {
         lazygit = require "configs.lazygit",
+        picker = picker_config.config.picker,
       }
     end,
   },
@@ -83,15 +86,16 @@ return {
     keys = require("configs.spectre").keys,
     opts = {},
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    lazy = false,
-    keys = require("configs.telescope").keys,
-    config = function()
-      require "configs.telescope"
-      require("telescope").load_extension "ui-select"
-    end,
-  },
+  -- Telescope (replaced by Snacks Picker)
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   lazy = false,
+  --   keys = require("configs.telescope").keys,
+  --   config = function()
+  --     require "configs.telescope"
+  --     require("telescope").load_extension "ui-select"
+  --   end,
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = require "configs.treesitter",
@@ -143,7 +147,7 @@ return {
     ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      -- haskell-tools can work without telescope
     },
   },
   {

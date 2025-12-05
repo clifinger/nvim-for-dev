@@ -1,5 +1,7 @@
+local picker_config = require("configs.picker")
+
 return {
-  keys = {
+  keys = vim.list_extend({
     {
       "<leader>gg",
       function()
@@ -7,5 +9,5 @@ return {
       end,
       desc = "Lazygit",
     },
-  },
+  }, picker_config.keys or {}),
 }

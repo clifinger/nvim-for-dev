@@ -33,13 +33,13 @@ map(
   { noremap = true, silent = true, desc = "Toggle Background Transparency" }
 )
 
--- Telescope: Include hidden and ignored files
+-- Snacks Picker: Include hidden and ignored files (replaces Telescope mapping)
 map("n", "<leader>fh", function()
-  require("telescope.builtin").find_files({
+  Snacks.picker.files({
     hidden = true,
-    no_ignore = true,
+    ignored = true,
   })
-end, { desc = "Telescope: Find Files (Hidden + Ignored)" })
+end, { desc = "Snacks Picker: Find Files (Hidden + Ignored)" })
 
 -- Haskell: Run code lens (evaluate)
 map({ "n", "i", "v" }, "<A-e>", function()
