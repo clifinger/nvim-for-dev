@@ -41,6 +41,12 @@ return {
       sort = {
         fields = { "score:desc", "#text", "idx" },
       },
+      previewers = {
+        file = {
+          max_size = 1024 * 1024, -- 1MB
+          max_line_length = 500,
+        },
+      },
       formatters = {
         file = {
           filename_first = false,
