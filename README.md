@@ -16,11 +16,15 @@ This configuration is based on NvChad. Before proceeding, ensure you have the ne
 - **A Nerd Font** as your terminal font.
   - Make sure the nerd font you set doesn't end with `Mono` to prevent small icons.
   - Example: `JetbrainsMono Nerd Font` and not `JetbrainsMono Nerd Font Mono`.
-- **`ripgrep`** is required for grep searching with Telescope (OPTIONAL).
+- **`ripgrep`** is required for grep searching with Snacks Picker (OPTIONAL).
   - **Debian/Ubuntu**: `sudo apt-get install ripgrep`
   - **macOS (Homebrew)**: `brew install ripgrep`
   - **Arch Linux**: `sudo pacman -S ripgrep`
   - **Other**: See the [ripgrep installation guide](https://github.com/BurntSushi/ripgrep#installation).
+- **`fd`** is recommended for faster file searching (OPTIONAL).
+  - **Debian/Ubuntu**: `sudo apt-get install fd-find`
+  - **macOS (Homebrew)**: `brew install fd`
+  - **Arch Linux**: `sudo pacman -S fd`
 - **`gcc`**:
   - Windows users must have `mingw` installed and set on path.
 - **`make`**:
