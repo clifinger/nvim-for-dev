@@ -2,10 +2,13 @@ dofile(vim.g.base46_cache .. "cmp")
 
 local cmp = require "cmp"
 
+-- Variable for toggle auto-completion
+vim.g.cmp_auto_enabled = true
+
 local options = {
   completion = { 
     completeopt = "menu,menuone",
-    autocomplete = false
+    autocomplete = { cmp.TriggerEvent.TextChanged }
   },
 
   snippet = {
@@ -32,16 +35,7 @@ local options = {
       end
     end, { "i", "s" }),
 
-    ["<C-CR>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        }
-      else
-        cmp.complete()
-      end
-    end, { "i", "s" }),
+    ["<C-CR>"] = cmp.mapping.complete(),
 
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then

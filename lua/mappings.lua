@@ -72,6 +72,27 @@ map("n", "<leader>fz", function()
   Snacks.picker.lines()
 end, { desc = "Find in Current Buffer" })
 
+-- Git mappings
+map("n", "<leader>gg", function()
+  Snacks.lazygit()
+end, { desc = "Open Lazygit" })
+
+map("n", "<leader>gs", function()
+  Snacks.picker.git_status()
+end, { desc = "Git Status" })
+
+map("n", "<leader>gb", function()
+  Snacks.picker.git_branches()
+end, { desc = "Git Branches" })
+
+map("n", "<leader>gc", function()
+  Snacks.picker.git_log()
+end, { desc = "Git Commits" })
+
+map("n", "<leader>gf", function()
+  Snacks.picker.git_files()
+end, { desc = "Git Files" })
+
 -- Haskell: Run code lens (evaluate)
 map({ "n", "i", "v" }, "<A-e>", function()
   if vim.fn.mode() == "i" then
@@ -80,4 +101,18 @@ map({ "n", "i", "v" }, "<A-e>", function()
   local ht = require('haskell-tools')
   ht.lsp.buf_eval_all()
 end, { desc = "Haskell: Evaluate All" })
+
+-- Toggle auto-completion
+map("n", "<leader>tc", function()
+  local cmp = require "cmp"
+  if vim.g.cmp_auto_enabled then
+    cmp.setup { completion = { autocomplete = false } }
+    vim.g.cmp_auto_enabled = false
+    print "Auto-completion disabled"
+  else
+    cmp.setup { completion = { autocomplete = { cmp.TriggerEvent.TextChanged } } }
+    vim.g.cmp_auto_enabled = true
+    print "Auto-completion enabled"
+  end
+end, { desc = "Toggle Auto-completion" })
 

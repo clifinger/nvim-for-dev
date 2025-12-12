@@ -109,6 +109,7 @@ return {
     },
     build = "make tiktoken",
     branch = "main",
+    lazy = false,
     cmd = "CopilotChat",
     opts = require("configs.copilot").opts,
     config = require("configs.copilot").config,

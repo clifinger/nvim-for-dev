@@ -1,7 +1,5 @@
 -- /home/julien/.config/vim/lua/configs/copilot.lua
 local M = {}
--- Variable for Toggle Copilot completion
-vim.g.copilot_enabled = 1
 local cmp = require "cmp"
 local user = vim.env.USER or "User"
 user = user:sub(1, 1):upper() .. user:sub(2)
