@@ -99,7 +99,14 @@ return {
   -- },
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
     opts = require "configs.treesitter",
+    config = function(_, opts)
+      -- Use the new API instead of the deprecated nvim-treesitter.configs
+      require("nvim-treesitter").setup(opts)
+    end,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
