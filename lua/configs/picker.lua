@@ -217,7 +217,6 @@ return {
     {
       "<leader>ff",
       function()
-        vim.notify("DEBUG: enabled=" .. tostring(Snacks.image.config.enabled) .. " force=" .. tostring(Snacks.image.config.force))
         Snacks.picker.files()
       end,
       desc = "Find Files",
